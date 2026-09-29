@@ -1,0 +1,50 @@
+services:
+  # Relational Database for self-hosted hackathon storage
+  db:
+    image: postgres:16-alpine
+    container_name: dogfood-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: dogfood
+      POSTGRES_PASSWORD: dogfood_secure_password_2026
+      POSTGRES_DB: dogfood_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dogfood -d dogfood_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # FastAPI Backend API Server
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: dogfood-backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://dogfood:dogfood_secure_password_2026@db:5432/dogfood_db
+      PORT: 8000
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # Frontend Web Client
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dogfood-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
