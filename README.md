@@ -92,21 +92,6 @@ npm run build
 
 ---
 
-## 🧭 5-Minute Demo Tour
-
-Use the top **Demo Bar** to step through the 5-minute competition lifecycle:
-1. `00:00` **Landing Page**: *BUILD. JUDGE. SHIP.* with the animated Fairness Pipeline.
-2. `00:30` **Organizer Command Center**: High-density event telemetry.
-3. `01:00` **Judge Assignment**: Run solver and inspect conflict detection.
-4. `01:45` **Judge Fairness Lab**: Inspect raw score distributions.
-5. `02:15` **Run Normalization**: Toggle RAW $\rightarrow$ NORMALIZED score deltas.
-6. `03:00` **Integrity Shield**: Duplicate vote protection and vertical audit trail.
-7. `03:30` **Hackathon Simulator**: 9-stage lifecycle test and chaos injections.
-8. `04:15` **Pairwise Mode**: Bradley-Terry alternative ranking.
-9. `04:40` **API Explorer**: OpenAPI spec and Webhook Center.
-10. `05:00` **Final Results**: Self-hostable, trustworthy hackathon operating system.
-
----
 
 ## 📄 License
 MIT License. Open source and self-hostable.
